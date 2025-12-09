@@ -31,7 +31,7 @@ spec:
  selector:
   app: myapp
  ports:
-  - port: 9090                  #this is the port where app is running.
+  - port: 8080                  #this is the port where app is running.
     targetPort: 8080
 ...
 
