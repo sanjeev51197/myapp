@@ -2,36 +2,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: webapp
+  name: webapp
 spec:
- replicas: 2
- strategy: 
-  type: RollingUpdate
- selector:
-  matchLabels:
-   app: myapp
- template:
-  metadata:
-   name: mypod
-   labels:
-    app: myapp
-  spec:
-   containers:
-   - name: webappcontainer
-     image: sanjeev51197/test:myapp-v1
-     ports:
-     - containerPort: 9090
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      name: mypod
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: webappcontainer
+          image: sanjeev51197/test:myapp-v1
+          ports:
+            - containerPort: 8080   # FIXED
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: websvc
+  name: websvc
 spec:
- type: LoadBalancer
- selector:
-  app: myapp
- ports:
-  - port: 8080                  #this is the port where app is running.
-    targetPort: 8080
-...
-
+  type: LoadBalancer
+  selector:
+    app: myapp
+  ports:
+    - port: 8080                  # LoadBalancer external port
+      targetPort: 8080            # Spring Boot port
