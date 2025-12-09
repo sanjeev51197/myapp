@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: webappcontainer
-          image: sanjeev51197/test:myapp-v1
+          image: sanjeev51197/mytest:myapp-v1
           ports:
             - containerPort: 8080   # FIXED
 ---
